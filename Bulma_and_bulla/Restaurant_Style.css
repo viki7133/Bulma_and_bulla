@@ -1,0 +1,84 @@
+﻿body, html {
+    height: 100%;
+    padding: 0px;
+    background-image: url("../Images/background_bullma.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+
+.title{
+    font-size: 32px;
+    margin-bottom: 20px;
+    margin:auto;
+
+}
+
+.homeImage {
+    width: 80%;
+}
+
+.aboutImage{
+    width:50%;
+}
+
+#MainForm {
+    text-align: center;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    z-index: 2;
+}
+
+#Navigation_Table{
+    margin: 20px 20px 20px 3px;
+    width: 100%;
+}
+
+.navCell {
+    width: 10%;
+}
+
+.nav_btn {
+    border-style: none;
+    background-color: #FF9900;
+    color: #3333CC;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.nav_btn:hover{
+    font-weight:bolder;
+    font-size: 20px;
+}
+
+#signInSpace{
+    float: left;
+    text-align: left;
+    border-right:double;
+    width: 25%;
+    height: 100%
+}
+
+.panels {
+    height: 100%;
+    padding: 50px;
+    background-color: #FFCCCC;
+    text-align:center;
+}
+
+#signUpTable {
+    text-align: Left;
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+#signUpTable td{
+    width: 25%;
+}
