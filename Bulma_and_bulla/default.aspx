@@ -44,7 +44,7 @@
             <asp:Panel ID="Current_Panel" runat="server" >
                 <!-- Basically Sweetheart work on these panels as the content of each page-->
                 <asp:Panel ID="Home_Panel" runat="server" CssClass="panels">
-                    <asp:Label ID="Label1" runat="server" Text="We Are The best Asian Restaurant!" CssClass="title" ></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="We Are The Best Online Restaurant!" CssClass="title" ></asp:Label>
                     <br />
                     <asp:Image ID="food1" runat="server" ImageUrl="~/Images/food1.jpg" CssClass="homeImage" />
                     <br />
@@ -80,10 +80,28 @@
                     </asp:Table>
                 </asp:Panel>
 
+                <!-- Details panel which sucked the soul out of me-->
+                <asp:Panel ID="Details_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
+                    <asp:Label ID="detailsPanelLabel" runat="server" Text="DETAILS" CssClass="title"></asp:Label>
+                    <br />
+                    <br />
+                   
+                    <asp:Panel ID="Table_Panel" runat="server" HorizontalAlign="left">
+                    </asp:Panel>
+                </asp:Panel>
+
                 <!-- Basically Sweetheart work on these panels as the content of each page-->
                 <asp:Panel ID="Menu_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
-                    <asp:Label ID="Label3" runat="server" Text="MENU" CssClass="title"></asp:Label>
+                    <asp:Label ID="menuPanelLabel" runat="server" Text="MENU" CssClass="title"></asp:Label>
+                    <br />
+                    <br />
+                    <!--<asp:Label ID="menuLabel" runat="server" Text="Label"></asp:Label> -->
+                    <asp:Panel ID="Menu_Control_Panel" runat="server" HorizontalAlign="center">
+                    </asp:Panel>
+                    
                 </asp:Panel>
+
+               
 
                 <!-- Basically Sweetheart work on these panels as the content of each page-->
                 <asp:Panel ID="SignIn_Panel" runat="server" Visible="False" Enabled="False" BackColor="#FFCCCC" CssClass="panels">
@@ -96,18 +114,19 @@
                         <br />
                         <asp:TextBox ID="Password_Txt" runat="server" TextMode="Password"></asp:TextBox>
                         <br /><br />
-                        <asp:Button ID="SignIn" runat="server" Text="Sign In"  OnClick="OnSignInClick" CssClass="aut_btn"  />
+                        <asp:Button ID="SignInBtn" runat="server" Text="Sign In"  OnClick="OnSignInClick" CssClass="aut_btn"  />
                         <br />
                         <br />
                         <asp:Label ID="noAccount_lbl" runat="server" Text="Don't have an account? "></asp:Label>
                     <asp:LinkButton ID="SignUpLinkButton" runat="server" OnClick="OnSignUpLinkClick">Sign Up!</asp:LinkButton>
                     </asp:Panel>
 
+                <!--Sign up panel-->
                 <asp:Panel ID="SignUp_Panel" runat="server" Visible="False" Enabled="False" BackColor="#FFCCCC" CssClass="panels" >
                         
-                    <table id="signUpTable">
+                    <table class="infoTables">
                         <tr>
-                            <td><asp:Label ID="Label4" runat="server" Text="FIRST NAME:"></asp:Label></td>
+                            <td><asp:Label ID="firstNameLbl" runat="server" Text="FIRST NAME:"></asp:Label></td>
                             <td><asp:TextBox ID="firstNameTxt" runat="server"></asp:TextBox></td>
                             <td></td>
                             <td><asp:Label ID="EmailLbl" runat="server" Text="EMAIL:"></asp:Label></td>
@@ -150,9 +169,62 @@
                     <asp:Panel ID="AuthenticatedSpace" runat="server" Visible="False" Enabled="False"></asp:Panel>
                 </asp:Panel>
 
+                <!--Customer's profile space-->
+                <asp:Panel ID="Profile_Panel" runat="server" Visible="False" Enabled="False" BackColor="#FFCCCC" CssClass="panels">
+                    <asp:Label ID="profilePanelLabel" runat="server" Text="PROFILE" CssClass="title"></asp:Label>
+                        <br/>
+                        <br/>
+                    <table class="infoTables">
+                        <tr>
+                            <td><asp:Label ID="pFirstNameLabel" runat="server" Text="First Name:"></asp:Label></td>
+                            <td><asp:TextBox ID="pFirstNameTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                            <td></td>
+                            <td><asp:Label ID="pEmailLabel" runat="server" Text="Email:"></asp:Label></td>
+                            <td><asp:TextBox ID="pEmailTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label ID="pLastNameLabel" runat="server" Text="Last Name:"></asp:Label></td>
+                            <td><asp:TextBox ID="pLastNameTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                            <td></td>
+                            <td><asp:Label ID="pAddressLabel" runat="server" Text="Address:"></asp:Label></td>
+                            <td><asp:TextBox ID="pAddressTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label ID="pPhoneLabel" runat="server" Text="Phone Number:"></asp:Label></td>
+                            <td><asp:TextBox ID="pPhoneTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                            <td></td>
+                            <td><asp:Label ID="pCityLabel" runat="server" Text="City:"></asp:Label></td>
+                            <td><asp:TextBox ID="pCityTxtbox" runat="server" enabled="false"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label ID="pGenderLabel" runat="server" Text="Gender:"></asp:Label></td>
+                            <td><asp:TextBox ID="pGenderTxtbox" runat="server" enabled="false"></asp:TextBox>
+                            <br />
+                                <asp:DropDownList ID="pGenderDropDown" runat="server" enabled="false" Visible="false">
+                                    <asp:ListItem Value="M" Text="Male"></asp:ListItem>
+                                    <asp:ListItem Value="F" Text="Female"></asp:ListItem>
+                                    <asp:ListItem Value="NB" Text="Non-Binary"></asp:ListItem>
+                                    <asp:ListItem Value="OT" Text="Other/None"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td></td>
+                            <td><asp:Label ID="pPasswordLabel" runat="server" Text="Password:"></asp:Label></td>
+                            <td><asp:TextBox ID="pPasswordTxtBox" runat="server" Enabled="false"></asp:TextBox></td>
+                        </tr>
+                    </table>
+                    <br />
+                    <asp:Button ID="pEditButton" runat="server" Text="Edit" OnClick="OnEditClick" CssClass="aut_btn" Width="70px"  />
+                    <asp:Button ID="pSaveButton" runat="server" Text="Save" onClick="onSaveClick" CssClass="aut_btn" enabled="false" Width="70px" />
+                    <asp:Button ID="pDeleteButton" runat="server" Text="Delete" OnClick="OnDeleteClick" CssClass="aut_btn" Width="70px"  />
+                    <br /><br />
+                    
+                    <asp:Panel ID="Panel2" runat="server" Visible="False" Enabled="False"></asp:Panel>
+                </asp:Panel>
+
+
                 <!-- Basically Sweetheart work on these panels as the content of each page-->
                 <asp:Panel ID="Contact_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
-                    <asp:Label ID="Label5" runat="server" Text="CONTACT" CssClass="title"></asp:Label>
+                    <asp:Label ID="contactPanelLabel" runat="server" Text="CONTACT" CssClass="title"></asp:Label>
                 </asp:Panel>
 
             </asp:Panel>

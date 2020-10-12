@@ -1,4 +1,5 @@
-﻿body, html {
+﻿@import url('Restaurant_Style.css');
+body, html {
     height: 100%;
     padding: 0px;
     background-image: url("../Images/background_bullma.png");
@@ -72,7 +73,7 @@
     text-align:center;
 }
 
-#signUpTable {
+.infoTables {
     text-align: Left;
     width: 75%;
     margin-left: 12.5%;

@@ -1,0 +1,46 @@
+//Menu placement stuff
+
+/*     for(int j=0; j<tableRows; j++)
+                                 {
+                                     /* Label label = new Label();
+                                      label.Text = reader.GetValue(j).ToString();
+                                      tc.Controls.Add(label);*/
+                            /*        labelResult += reader.GetValue(j).ToString() + "</br>";
+                                }
+                                Label label = new Label();
+                                label.Text = labelResult;
+                                tc.Controls.Add(label);
+                                tr.Cells.Add(tc);
+                            */
+
+
+
+/* tr.Cells.Add(tc);
+                            Label nameLabel = new Label();
+                            nameLabel.Text = reader.GetString(0);
+                            Label priceLabel = new Label();
+                            priceLabel.Text = reader.GetValue(1).ToString();
+                            Label originLabel = new Label();
+                            originLabel.Text = reader.GetString(2);
+                            tc.Controls.Add(nameLabel);
+                            tc.Controls.Add(priceLabel);
+                            tc.Controls.Add(originLabel);
+                            tr.Cells.Add(tc);*/
+
+
+
+/* TableCell tc = new TableCell();
+                         if (i < 3) 
+                         {
+                             Label label = new Label();
+                             label.Text = reader.GetValue(i).ToString();
+                             tc.Controls.Add(label);
+                         }
+                         else if(i == 3)
+                         {
+                             Image image = new Image();
+                             image.Height = 50;
+                             image.Width = 100;
+                             image.ImageUrl = (string) reader.GetString(i);
+                             tc.Controls.Add(image);
+                         }*/
