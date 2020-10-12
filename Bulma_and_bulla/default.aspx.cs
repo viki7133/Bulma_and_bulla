@@ -534,7 +534,7 @@ namespace Bulma_and_bulla
 
         protected void OnDeleteClick(object sender, EventArgs e)
         {
-        /*    string emailToCheck = pEmailTxtbox.Text;
+            string emailToCheck = pEmailTxtbox.Text;
 
             SqlConnection restaurantConnection = new SqlConnection(connectionString);
             restaurantConnection.Open();
@@ -556,7 +556,7 @@ namespace Bulma_and_bulla
 
             restaurantConnection.Close();
 
-            OnCustClick(sender, e);*/
+            OnCustClick(sender, e);
         }
     }
 }
