@@ -103,9 +103,9 @@
 
                
 
-                <!-- Basically Sweetheart work on these panels as the content of each page-->
+               
                 <asp:Panel ID="SignIn_Panel" runat="server" Visible="False" Enabled="False" BackColor="#FFCCCC" CssClass="panels">
-                        <asp:Label runat="server" ID="signInUnable" ForeColor="Red"></asp:Label>
+                        <asp:Label runat="server" ID="signInUnable" ForeColor="Red"></asp:Label><br />
                         <asp:Label ID="email_lbl" runat="server" Text="EMAIL"></asp:Label>
                         <br />
                         <asp:TextBox ID="Email_Txt" runat="server"></asp:TextBox>
@@ -222,9 +222,48 @@
                 </asp:Panel>
 
 
-                <!-- Basically Sweetheart work on these panels as the content of each page-->
+                
                 <asp:Panel ID="Contact_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
-                    <asp:Label ID="contactPanelLabel" runat="server" Text="CONTACT" CssClass="title"></asp:Label>
+                    
+                    <div id="locationsDiv">
+                        <asp:Label ID="MontrealTitle" runat="server" Text="MONTREAL" CssClass="locationsTitle"></asp:Label><br />
+                        <!--first Montreal Location-->
+                        <asp:Label ID="MontrealStreet" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="MontrealCode" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="MontrealPhone" runat="server"  CssClass="locationsLines"></asp:Label><br /><br />
+                        <!--Second Montreal Location-->
+                        <asp:Label ID="MontrealStreet1" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="MontrealCode1" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="MontrealPhone1" runat="server"  CssClass="locationsLines"></asp:Label><br /><br />
+                        <!--LaSalle Location-->
+                        <asp:Label ID="LaSalleTitle" runat="server" Text="LASALLE" CssClass="locationsTitle"></asp:Label><br />
+                        <asp:Label ID="LaSalleStreet" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LaSalleCode" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LaSallePhone" runat="server"  CssClass="locationsLines"></asp:Label><br /><br />
+                        <!--Laval-->
+                        <asp:Label ID="LavalTitle" runat="server" Text="LAVAL" CssClass="locationsTitle"></asp:Label><br />
+                        <asp:Label ID="LavalStreet" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LavalCode" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LavalPhone" runat="server"  CssClass="locationsLines"></asp:Label><br /><br />
+                        <!--Longueuil-->
+                        <asp:Label ID="LongueuilTitle" runat="server" Text="LONGUEUIL" CssClass="locationsTitle"></asp:Label><br />
+                        <asp:Label ID="LongueilStreet" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LongueilCode" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                        <asp:Label ID="LongueilPhone" runat="server"  CssClass="locationsLines"></asp:Label><br />
+                    </div>
+                    <div id="contactUs">
+                        <br />
+                        <asp:Label ID="commentEmailLable" runat="server" Text="Email: " CssClass="locationsTitle"></asp:Label>
+                        <asp:TextBox ID="commentEmailtext" runat="server"></asp:TextBox>
+                        <br /><br />
+                        <asp:Label ID="commentLable" runat="server" Text="Comments or Suggestions: " CssClass="locationsTitle"></asp:Label><br /><br />
+                        <asp:TextBox ID="commentText" runat="server"  Width="50%" Rows="10" TextMode="MultiLine"></asp:TextBox>
+                        <br /><br />
+                        <asp:Button ID="SubmitComment" runat="server" Text="Submit Comments!" OnClick="SubmitComment_Click"/><br /><br />
+                        <asp:Label ID="SubmittedComment" runat="server" CssClass="locationsTitle"></asp:Label><br /><br />
+                        <asp:Label ID="newsletterlbl" runat="server" Text="Also, download our latest deals!" CssClass="locationsTitle"></asp:Label><br />
+                        <asp:Button ID="DownloadDeals" runat="server" Text="Download Deals!" OnClick="DownloadDeals_Click" /><br /><br />
+                    </div>
                 </asp:Panel>
 
             </asp:Panel>

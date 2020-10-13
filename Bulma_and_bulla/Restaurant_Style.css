@@ -83,3 +83,32 @@ body, html {
 #signUpTable td{
     width: 25%;
 }
+
+#Contact_Panel {
+    text-align: left;
+    padding: 0px;
+    clear: both;
+}
+
+#locationsDiv {
+    float: left;
+    margin: 0px;
+    background-color: #DDD7C9;
+    width: 25%;
+    height: 100%;
+}
+
+#contactUs{
+    width: 75%;
+    
+}
+
+#CommentsTitle {
+    color: #4897C9;
+}
+
+.locationsTitle {
+    color: #4897C9;
+    font-weight: bold;
+    padding: 5px;
+}

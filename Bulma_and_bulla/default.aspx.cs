@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +13,7 @@ namespace Bulma_and_bulla
 {
     public partial class _default : System.Web.UI.Page
     {
-        private String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vikto\Desktop\Fall2020\E-commerce\Bulma_and_bulla\Bulma_and_bulla\App_Data\BulmaAndBulla.mdf;Integrated Security=True";
+        private String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|BulmaAndBulla.mdf;Integrated Security=True";
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -61,6 +63,9 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
         }
 
         protected void OnAboutClick(object sender, EventArgs e)
@@ -85,6 +90,9 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
         }
 
         protected void OnContactClick(object sender, EventArgs e)
@@ -109,6 +117,60 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
+
+            try
+            {
+                using(SqlConnection restaurantConnection = new SqlConnection(connectionString))
+                {
+                    restaurantConnection.Open();
+                    SqlCommand cmd = restaurantConnection.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "Select Location_ID, City, Street_Line, Postal_Code, Phone From dbo.Locations";
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        switch (reader[0])
+                        {
+                            case 1000:
+                                MontrealStreet.Text = reader.GetString(2);
+                                MontrealCode.Text = reader.GetString(3);
+                                MontrealPhone.Text = reader.GetString(4);
+                                break;
+                            case 1010:
+                                MontrealStreet1.Text = reader.GetString(2);
+                                MontrealCode1.Text = reader.GetString(3);
+                                MontrealPhone1.Text = reader.GetString(4); 
+                                break;
+                            case 1020:
+                                LaSalleStreet.Text = reader.GetString(2);
+                                LaSalleCode.Text = reader.GetString(3);
+                                LaSallePhone.Text = reader.GetString(4);
+                                break;
+                            case 1040:
+                                LavalStreet.Text = reader.GetString(2);
+                                LavalCode.Text = reader.GetString(3);
+                                LavalPhone.Text = reader.GetString(4); 
+                                break;
+                            case 1050:
+                                LongueilStreet.Text = reader.GetString(2);
+                                LongueilCode.Text = reader.GetString(3);
+                                LongueilPhone.Text = reader.GetString(4);
+                                break;
+                        }
+                    }
+
+                    reader.Close();
+                    restaurantConnection.Close();
+                }
+            }
+            catch (SystemException)
+            {
+
+            }
         }
 
         protected void OnMenuClick(object sender, EventArgs e)
@@ -134,75 +196,86 @@ namespace Bulma_and_bulla
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
 
-            //string result = "";
-            using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
+
+            try
             {
-                SqlCommand command = new SqlCommand("SELECT Product_Image, Product_Name, Product_Price, Product_Origin, Product_Id FROM dbo.Menu", restaurantConnection);
-                restaurantConnection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                Table table = new Table();
-                Menu_Control_Panel.Controls.Add(table);
-
-                while (reader.Read())
+                //string result = "";
+                using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
                 {
-                    //Create table dynamically
-                    int items = 6;
-                    
-                    TableRow tr = new TableRow();
-                    for(int i=0; i<items; i++)
+                    SqlCommand command = new SqlCommand("SELECT Product_Image, Product_Name, Product_Price, Product_Origin, Product_Id FROM dbo.Menu", restaurantConnection);
+                    restaurantConnection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    Table table = new Table();
+                    Menu_Control_Panel.Controls.Add(table);
+
+                    while (reader.Read())
                     {
-                        TableCell tc = new TableCell();
-                        tc.Width = 180;
-                        if (i == 0)
+                        //Create table dynamically
+                        int items = 6;
+
+                        TableRow tr = new TableRow();
+                        for (int i = 0; i < items; i++)
                         {
-                            Image image = new Image();
-                            image.Height = 100;
-                            image.Width = 180;
-                            image.ImageUrl = (string)reader.GetString(i);
-                            tc.Controls.Add(image);
-                            tr.Cells.Add(tc);
-                        }
-                        else if (i == 2)
-                        {
-                            Label label = new Label();
-                            label.Text = "$" + reader.GetValue(i).ToString();
-                            tc.Controls.Add(label);
-                            tr.Cells.Add(tc);
+                            TableCell tc = new TableCell();
+                            tc.Width = 180;
+                            if (i == 0)
+                            {
+                                System.Web.UI.WebControls.Image image = new System.Web.UI.WebControls.Image();
+                                image.Height = 100;
+                                image.Width = 180;
+                                image.ImageUrl = (string)reader.GetString(i);
+                                tc.Controls.Add(image);
+                                tr.Cells.Add(tc);
+                            }
+                            else if (i == 2)
+                            {
+                                Label label = new Label();
+                                label.Text = "$" + reader.GetValue(i).ToString();
+                                tc.Controls.Add(label);
+                                tr.Cells.Add(tc);
+
+                            }
+                            else if (i < 4)
+                            {
+                                Label label = new Label();
+                                label.Text = reader.GetValue(i).ToString();
+                                tc.Controls.Add(label);
+                                tr.Cells.Add(tc);
+
+                            }
+                            else if (i == 4)
+                            {
+                                LinkButton link = new LinkButton();
+                                link.ID = "menuItem" + reader.GetValue(i).ToString();
+                                link.Text = "Details";
+                                tc.Controls.Add(link);
+                                tr.Cells.Add(tc);
+
+                            }
+                            else if (i == 5)
+                            {
+                                Button orderButton = new Button();
+                                orderButton.ID = "orderButton" + reader.GetValue(4).ToString();
+                                orderButton.Text = "Add to Order";
+                                tc.Controls.Add(orderButton);
+                                tr.Cells.Add(tc);
+
+                            }
 
                         }
-                        else if(i<4)
-                        {
-                            Label label = new Label();
-                            label.Text = reader.GetValue(i).ToString();
-                            tc.Controls.Add(label);
-                            tr.Cells.Add(tc);
-                          
-                        }
-                        else if(i == 4)
-                        {
-                            LinkButton link = new LinkButton();
-                            link.ID = "menuItem" + reader.GetValue(i).ToString();
-                            link.Text = "Details";
-                            tc.Controls.Add(link);
-                            tr.Cells.Add(tc);
-
-                        }
-                        else if (i == 5)
-                        {
-                            Button orderButton = new Button();
-                            orderButton.ID = "orderButton" + reader.GetValue(4).ToString();
-                            orderButton.Text = "Add to Order";
-                            tc.Controls.Add(orderButton);
-                            tr.Cells.Add(tc);
-
-                        }
-
-                    }
                         table.Controls.Add(tr);
+                    }
+                    reader.Close();
+                    restaurantConnection.Close();
                 }
-                reader.Close();
-                restaurantConnection.Close();
             }
+            catch (SystemException)
+            {
+
+            }
+            
             //menuLabel.Text = result;
             Button myButton = new Button();
             myButton.Text = "YAY";
@@ -232,6 +305,9 @@ namespace Bulma_and_bulla
             Details_Panel.Visible = true;
             Details_Panel.Enabled = true;
 
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
+
             string controlId = controlID;
             string productId = controlId.Substring(8);
             
@@ -253,7 +329,7 @@ namespace Bulma_and_bulla
 
             //Image in cell 1, row 1
             TableCell tc11 = new TableCell();
-            Image image = new Image();
+            System.Web.UI.WebControls.Image image = new System.Web.UI.WebControls.Image();
             image.Height = 130;
             image.Width = 200;
             image.ImageUrl = ds.Tables[0].Rows[0]["Product_Image"].ToString();
@@ -330,6 +406,9 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
         }
 
         protected void OnSignUpLinkClick(object sender, EventArgs e)
@@ -354,6 +433,9 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
         }
 
         protected void OnOrderClick(object sender, EventArgs e)
@@ -512,51 +594,126 @@ namespace Bulma_and_bulla
 
         protected void onSaveClick(object sender, EventArgs e)
         {
-            SqlConnection restaurantConnection = new SqlConnection(connectionString);
-            restaurantConnection.Open();
-            SqlCommand cmd = restaurantConnection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = $"UPDATE dbo.Customer SET Cust_Last_Name = '{pLastNameTxtbox.Text}', Cust_First_Name = '{pFirstNameTxtbox.Text}'," +
-                $" Cust_Phone_Number = '{pPhoneTxtbox.Text}', Cust_Address_Line = '{pAddressTxtbox.Text}', " +
-                $"Cust_Address_City = '{pCityTxtbox.Text}', Cust_Gender = '{pGenderDropDown.SelectedItem.Text}', " +
-                $"Password = '{pPasswordTxtBox.Text}' WHERE Cust_Email_Address = '{pEmailTxtbox.Text}'";
-            cmd.ExecuteNonQuery();
+            try
+            {
+                SqlConnection restaurantConnection = new SqlConnection(connectionString);
+                restaurantConnection.Open();
+                SqlCommand cmd = restaurantConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"UPDATE dbo.Customer SET Cust_Last_Name = '{pLastNameTxtbox.Text}', Cust_First_Name = '{pFirstNameTxtbox.Text}'," +
+                    $" Cust_Phone_Number = '{pPhoneTxtbox.Text}', Cust_Address_Line = '{pAddressTxtbox.Text}', " +
+                    $"Cust_Address_City = '{pCityTxtbox.Text}', Cust_Gender = '{pGenderDropDown.SelectedItem.Text}', " +
+                    $"Password = '{pPasswordTxtBox.Text}' WHERE Cust_Email_Address = '{pEmailTxtbox.Text}'";
+                cmd.ExecuteNonQuery();
 
-            cmd.CommandText = $"SELECT Customer_ID FROM dbo.Customer WHERE Cust_Email_Address = '{pEmailTxtbox.Text}'";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            int customerID = Int32.Parse(ds.Tables[0].Rows[0]["Customer_ID"].ToString());
-            restaurantConnection.Close();
-            OpenProfilePanel(customerID);
+                cmd.CommandText = $"SELECT Customer_ID FROM dbo.Customer WHERE Cust_Email_Address = '{pEmailTxtbox.Text}'";
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                int customerID = Int32.Parse(ds.Tables[0].Rows[0]["Customer_ID"].ToString());
+                restaurantConnection.Close();
+                OpenProfilePanel(customerID);
+            }
+            catch (SystemException)
+            {
+
+            }
+            
         }
 
         protected void OnDeleteClick(object sender, EventArgs e)
         {
-            string emailToCheck = pEmailTxtbox.Text;
+            try
+            {
+                string emailToCheck = pEmailTxtbox.Text;
 
-            SqlConnection restaurantConnection = new SqlConnection(connectionString);
-            restaurantConnection.Open();
-            SqlCommand cmd = restaurantConnection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = $"SELECT * FROM dbo.Customer WHERE Cust_Email_Address = '{emailToCheck}'";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            int customerID = Int32.Parse(ds.Tables[0].Rows[0]["Customer_ID"].ToString());
+                SqlConnection restaurantConnection = new SqlConnection(connectionString);
+                restaurantConnection.Open();
+                SqlCommand cmd = restaurantConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"SELECT * FROM dbo.Customer WHERE Cust_Email_Address = '{emailToCheck}'";
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                int customerID = Int32.Parse(ds.Tables[0].Rows[0]["Customer_ID"].ToString());
 
-            cmd.CommandText = $"DELETE FROM dbo.Comments WHERE Customer_ID = {customerID}";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = $"DELETE FROM dbo.Order WHERE Customer_ID = {customerID}";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = $"DELETE FROM dbo.Customer WHERE Customer_ID = {customerID}";
-            cmd.ExecuteNonQuery();
+                cmd.CommandText = $"DELETE FROM dbo.Comments WHERE Customer_ID = {customerID}";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = $"DELETE FROM dbo.Order WHERE Customer_ID = {customerID}";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = $"DELETE FROM dbo.Customer WHERE Customer_ID = {customerID}";
+                cmd.ExecuteNonQuery();
 
-            restaurantConnection.Close();
+                restaurantConnection.Close();
 
-            OnCustClick(sender, e);
+                OnCustClick(sender, e);
+            }
+            catch (SystemException)
+            {
+
+            }
+            
+        }
+
+        protected void DownloadDeals_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filename = @"~\Newsletter\DEALSNEWSLETTER.pdf";
+
+                HttpResponse res = HttpContext.Current.Response;
+                res.Clear();
+                res.AppendHeader("content-disposition", "attachment; filename=newsletter.pdf");
+                res.ContentType = "application/octet-stream";
+                res.WriteFile(filename);
+                res.Flush();
+                res.End();
+            }
+            catch (SystemException)
+            {
+
+            }
+
+        }
+
+        protected void SubmitComment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+                {
+                    restaurantConnection.Open();
+                    SqlCommand cmd = restaurantConnection.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+
+                    string customerEmail = commentEmailtext.Text;
+                    cmd.CommandText = $"SELECT Customer_ID FROM dbo.Customer WHERE Cust_Email_Address = '{customerEmail}'";
+                    int customerID = (int) cmd.ExecuteScalar();
+
+                    cmd.CommandText = "INSERT INTO dbo.Comments VALUES (@Customer_ID, @Comment)";
+                    cmd.Parameters.AddWithValue("Customer_ID", customerID);
+                    cmd.Parameters.AddWithValue("Comment", commentText.Text);
+                    
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    restaurantConnection.Close();
+
+                }
+
+                SubmittedComment.Text = "We have Received your comments and suggestions. Thanks you!";
+            }
+            catch (SystemException)
+            {
+                SubmittedComment.ForeColor = Color.Red;
+                SubmittedComment.Text = "Sorry, somthing went wrong with your comment. We will work on that!";
+            }
+            finally
+            {
+                commentEmailtext.Text = "";
+                commentText.Text = "";
+            }
         }
     }
 }
