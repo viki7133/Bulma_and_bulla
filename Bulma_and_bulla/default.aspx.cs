@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 
 namespace Bulma_and_bulla
 {
@@ -491,6 +492,15 @@ namespace Bulma_and_bulla
 
         public void OnSignUpClick(object sender, EventArgs e)
         {
+            string firstName = firstNameTxt.Text;
+            string lastName = lastNameTxt.Text;
+            string phoneNumber = phoneTxt.Text;
+            string address = addressTxt.Text;
+            string email = emailTxt.Text;
+            string city = cityTxt.Text;
+            string gender = genderDrop.SelectedItem.Text;
+            string password = passwordTxt.Text;
+            
             try
             {
                 SqlConnection restaurantConnection = new SqlConnection(connectionString);
@@ -500,14 +510,14 @@ namespace Bulma_and_bulla
                 cmd.CommandType = CommandType.Text;
 
                 cmd.CommandText = "INSERT INTO dbo.Customer VALUES (@Cust_Last_Name, @Cust_First_Name, @Cust_Phone_Number, @Cust_Address_Line, @Cust_Email_Address, @Cust_Address_City, @Cust_Gender, @Password)";
-                cmd.Parameters.AddWithValue("Cust_Last_Name", lastNameTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_First_Name", firstNameTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_Phone_Number", phoneTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_Address_Line", addressTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_Email_Address", emailTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_Address_City", cityTxt.Text);
-                cmd.Parameters.AddWithValue("Cust_Gender", genderDrop.SelectedItem.Text);
-                cmd.Parameters.AddWithValue("Password", passwordTxt.Text);
+                cmd.Parameters.AddWithValue("Cust_Last_Name", lastName);
+                cmd.Parameters.AddWithValue("Cust_First_Name", firstName);
+                cmd.Parameters.AddWithValue("Cust_Phone_Number", phoneNumber);
+                cmd.Parameters.AddWithValue("Cust_Address_Line", address);
+                cmd.Parameters.AddWithValue("Cust_Email_Address", email);
+                cmd.Parameters.AddWithValue("Cust_Address_City", city);
+                cmd.Parameters.AddWithValue("Cust_Gender", gender);
+                cmd.Parameters.AddWithValue("Password", password);
 
                 cmd.ExecuteNonQuery();
                 restaurantConnection.Close();
@@ -518,6 +528,24 @@ namespace Bulma_and_bulla
             {
                 SignedUpAlert.Text = ex.Message;
             }
+
+            SendEmail(lastName, firstName, phoneNumber, address, email, city, gender, password);
+        }
+
+        protected void SendEmail(string l, string f, string pN, string a, string e, string c, string g, string p)
+        {
+        /*    string sender = "Bulma.Bulla.Co@gmail.com";
+            string receiver = e;
+            string subject = "Account Created!";
+            string mailBody = $"Thank you for creating a customer account at Bulma & Bulla! <br/>Here are your account credentials: " +
+                $"<br/>Last Name: {l} <br/>First Name: {f} <br/>Phone Number: {pN} <br/>Address: {a} <br/>Email Address: {e} <br/>City: {c} <br/>Gender: {g}";
+            MailMessage message = new MailMessage(sender, receiver, subject, mailBody);
+            message.IsBodyHtml = true;
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.Credentials = new System.Net.NetworkCredential("Bulma.Bulla.Co@gmail.com", "Bull@2020");
+            client.Send(message);
+        */
         }
 
         protected void OpenProfilePanel(int customerID)
