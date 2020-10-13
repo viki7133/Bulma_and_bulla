@@ -32,6 +32,9 @@
                 <asp:TableCell ID="Nav_Contact" runat="server" CssClass="navCell">
                     <asp:Button ID="Contact_Btn" runat="server" Text="CONTACT" OnClick="OnContactClick" CssClass="nav_btn"/>
                 </asp:TableCell>
+                <asp:TableCell ID="Nav_Match" runat="server" CssClass="navCell">
+                    <asp:Button ID="Match_Button" runat="server" Text="LOVE MATCH" OnClick="Match_Button_Click" CssClass="nav_btn"/>
+                </asp:TableCell>
                 <asp:TableCell ID="dine" runat="server">
                     <asp:ImageButton ID="Shopping_Kart" runat="server" CssClass="cart" Height="20px" Width="20px" ImageUrl="~/Images/order_icon.png"  OnClick="OnOrderClick" />
                 </asp:TableCell>
@@ -90,12 +93,11 @@
                     </asp:Panel>
                 </asp:Panel>
 
-                <!-- Basically Sweetheart work on these panels as the content of each page-->
+                
                 <asp:Panel ID="Menu_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
                     <asp:Label ID="menuPanelLabel" runat="server" Text="MENU" CssClass="title"></asp:Label>
                     <br />
                     <br />
-                    <!--<asp:Label ID="menuLabel" runat="server" Text="Label"></asp:Label> -->
                     <asp:Panel ID="Menu_Control_Panel" runat="server" HorizontalAlign="center">
                     </asp:Panel>
                     
@@ -266,6 +268,12 @@
                     </div>
                 </asp:Panel>
 
+                <asp:Panel runat="server" ID="MatchFindPanel" Visible="False" Enabled="False" CssClass="panels">
+                    <asp:Label ID="MatchLbl" runat="server" Text="Enter your email and find your soulmate!" CssClass="locationsTitle"></asp:Label><br /><br />
+                    <asp:TextBox ID="MatchTxt" runat="server"></asp:TextBox>
+                    <asp:Button ID="FindBtn" runat="server" Text="Find My Match" OnClick="FindBtn_Click" />
+                    <asp:Label ID="MatchError" runat="server" Text="We couldn't find your match :( Try creating an account!" ForeColor="Red" Visible="false"></asp:Label>
+                </asp:Panel>
             </asp:Panel>
             
         </div>

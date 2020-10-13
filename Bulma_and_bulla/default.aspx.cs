@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
+using System.Configuration;
 
 namespace Bulma_and_bulla
 {
@@ -42,6 +43,11 @@ namespace Bulma_and_bulla
             
         }
 
+
+        protected void PanelEnable(Panel enablePanel)
+        {
+          
+        }
         protected void OnHomeClick(object sender, EventArgs e)
         {
             Home_Panel.Visible = true;
@@ -67,6 +73,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
         }
 
         protected void OnAboutClick(object sender, EventArgs e)
@@ -94,6 +103,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
         }
 
         protected void OnContactClick(object sender, EventArgs e)
@@ -121,6 +133,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
 
             try
             {
@@ -199,6 +214,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
 
             try
             {
@@ -309,80 +327,90 @@ namespace Bulma_and_bulla
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
 
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
+
             string controlId = controlID;
             string productId = controlId.Substring(8);
-            
-            SqlConnection restaurantConnection = new SqlConnection(connectionString);
-            restaurantConnection.Open();
-            SqlCommand command = restaurantConnection.CreateCommand();
-            command.CommandType = CommandType.Text;
-            command.CommandText = $"SELECT Product_Name, Product_Description, Product_Price, Nutritional_Value, Product_Type, Product_Origin, Product_Image FROM dbo.Menu WHERE Product_ID = {productId}";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = command;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
 
-            Table table = new Table();
-            table.CellSpacing = 10;
+            try
+            {
+                SqlConnection restaurantConnection = new SqlConnection(connectionString);
+                restaurantConnection.Open();
+                SqlCommand command = restaurantConnection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = $"SELECT Product_Name, Product_Description, Product_Price, Nutritional_Value, Product_Type, Product_Origin, Product_Image FROM dbo.Menu WHERE Product_ID = {productId}";
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = command;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
 
-            //Row 1
-            TableRow tr1 = new TableRow();
+                Table table = new Table();
+                table.CellSpacing = 10;
 
-            //Image in cell 1, row 1
-            TableCell tc11 = new TableCell();
-            System.Web.UI.WebControls.Image image = new System.Web.UI.WebControls.Image();
-            image.Height = 130;
-            image.Width = 200;
-            image.ImageUrl = ds.Tables[0].Rows[0]["Product_Image"].ToString();
-            tc11.Controls.Add(image);
-            tr1.Controls.Add(tc11);
+                //Row 1
+                TableRow tr1 = new TableRow();
 
-            //Origin, type, description in cell 2, row 1
-            TableCell tc12 = new TableCell();
-            Label tc2Label = new Label();
-            tc2Label.Text = ds.Tables[0].Rows[0]["Product_Origin"].ToString() + "</br> </br>" + ds.Tables[0].Rows[0]["Product_Type"].ToString() + "</br> </br>" + ds.Tables[0].Rows[0]["Product_Description"].ToString();
-            tc12.Controls.Add(tc2Label);
-            tr1.Cells.Add(tc12);
+                //Image in cell 1, row 1
+                TableCell tc11 = new TableCell();
+                System.Web.UI.WebControls.Image image = new System.Web.UI.WebControls.Image();
+                image.Height = 130;
+                image.Width = 200;
+                image.ImageUrl = ds.Tables[0].Rows[0]["Product_Image"].ToString();
+                tc11.Controls.Add(image);
+                tr1.Controls.Add(tc11);
 
-            //Nutritional value in cell 3, row 1
-            TableCell tc13 = new TableCell();
-            Label tc13Label = new Label();
-            tc13Label.Text = ds.Tables[0].Rows[0]["Nutritional_Value"].ToString();
-            tc13.Controls.Add(tc13Label);
-            tr1.Cells.Add(tc13);
-            table.Rows.Add(tr1);
+                //Origin, type, description in cell 2, row 1
+                TableCell tc12 = new TableCell();
+                Label tc2Label = new Label();
+                tc2Label.Text = ds.Tables[0].Rows[0]["Product_Origin"].ToString() + "</br> </br>" + ds.Tables[0].Rows[0]["Product_Type"].ToString() + "</br> </br>" + ds.Tables[0].Rows[0]["Product_Description"].ToString();
+                tc12.Controls.Add(tc2Label);
+                tr1.Cells.Add(tc12);
 
-            //Row 2
-            TableRow tr2 = new TableRow();
-            tr2.HorizontalAlign = HorizontalAlign.Center;
+                //Nutritional value in cell 3, row 1
+                TableCell tc13 = new TableCell();
+                Label tc13Label = new Label();
+                tc13Label.Text = ds.Tables[0].Rows[0]["Nutritional_Value"].ToString();
+                tc13.Controls.Add(tc13Label);
+                tr1.Cells.Add(tc13);
+                table.Rows.Add(tr1);
 
-            //Name in cell 1
-            TableCell tc21 = new TableCell();
-            Label tc21Label = new Label();
-            tc21Label.Text = ds.Tables[0].Rows[0]["Product_Name"].ToString();
-            tc21.Controls.Add(tc21Label);
-            tr2.Cells.Add(tc21);
+                //Row 2
+                TableRow tr2 = new TableRow();
+                tr2.HorizontalAlign = HorizontalAlign.Center;
 
-            //Price in cell 2
-            TableCell tc22 = new TableCell();
-            Label tc22Label = new Label();
-            tc22Label.Text = "$" + ds.Tables[0].Rows[0]["Product_Price"].ToString();
-            tc22.Controls.Add(tc22Label);
-            tr2.Cells.Add(tc22);
+                //Name in cell 1
+                TableCell tc21 = new TableCell();
+                Label tc21Label = new Label();
+                tc21Label.Text = ds.Tables[0].Rows[0]["Product_Name"].ToString();
+                tc21.Controls.Add(tc21Label);
+                tr2.Cells.Add(tc21);
 
-            //Order button in cell 3
-            TableCell tc23 = new TableCell();
-            Button orderButton = new Button();
-            orderButton.ID = "orderButton" + controlId;
-            orderButton.Text = "Add to order";
-            tc23.Controls.Add(orderButton);
-            tr2.Cells.Add(tc23);
+                //Price in cell 2
+                TableCell tc22 = new TableCell();
+                Label tc22Label = new Label();
+                tc22Label.Text = "$" + ds.Tables[0].Rows[0]["Product_Price"].ToString();
+                tc22.Controls.Add(tc22Label);
+                tr2.Cells.Add(tc22);
 
-            table.Rows.Add(tr2);
+                //Order button in cell 3
+                TableCell tc23 = new TableCell();
+                Button orderButton = new Button();
+                orderButton.ID = "orderButton" + controlId;
+                orderButton.Text = "Add to order";
+                tc23.Controls.Add(orderButton);
+                tr2.Cells.Add(tc23);
 
-            Table_Panel.Controls.Add(table);
+                table.Rows.Add(tr2);
 
-            restaurantConnection.Close();
+                Table_Panel.Controls.Add(table);
+
+                restaurantConnection.Close();
+            }
+            catch (SystemException)
+            {
+
+            }
         }
 
         protected void OnCustClick(object sender, EventArgs e)
@@ -410,6 +438,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
         }
 
         protected void OnSignUpLinkClick(object sender, EventArgs e)
@@ -437,6 +468,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
         }
 
         protected void OnOrderClick(object sender, EventArgs e)
@@ -570,6 +604,9 @@ namespace Bulma_and_bulla
 
             Details_Panel.Visible = false;
             Details_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
 
             Profile_Panel.Visible = true;
             Profile_Panel.Enabled = true;
@@ -741,6 +778,65 @@ namespace Bulma_and_bulla
             {
                 commentEmailtext.Text = "";
                 commentText.Text = "";
+            }
+        }
+
+        protected void Match_Button_Click(object sender, EventArgs e)
+        {
+            Home_Panel.Visible = false;
+            Home_Panel.Enabled = false;
+
+            About_Panel.Visible = false;
+            About_Panel.Enabled = false;
+
+            Contact_Panel.Visible = false;
+            Contact_Panel.Enabled = false;
+
+            Menu_Panel.Visible = false;
+            Menu_Panel.Enabled = false;
+
+            SignIn_Panel.Visible = false;
+            SignIn_Panel.Enabled = false;
+
+            SignUp_Panel.Visible = false;
+            SignUp_Panel.Enabled = false;
+
+            Details_Panel.Visible = false;
+            Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = true;
+            MatchFindPanel.Enabled = true;
+
+
+        }
+
+        protected void FindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+                {
+                    restaurantConnection.Open();
+                    SqlCommand cmd = restaurantConnection.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+
+                    String matchEmail = MatchTxt.Text;
+                    cmd.CommandText = "SELECT Cust_Last_Name, Cust_First_Name, Cust_Phone_Number, Cust_Address_City, Cust_Gender " +
+                        "FROM dbo.Customer JOIN dbo.Order ON customer.customer_id = order.customer_id";
+
+                    //Gotta finish the query and create the tables to display the match
+                    //Do query and finish order
+
+                    if (cmd.ExecuteNonQuery() == 0)
+                        MatchError.Visible = true;
+                }
+            }
+            catch (SystemException)
+            {
+
             }
         }
     }

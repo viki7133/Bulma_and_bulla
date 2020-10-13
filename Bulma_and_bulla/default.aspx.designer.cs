@@ -132,6 +132,24 @@ namespace Bulma_and_bulla
         protected global::System.Web.UI.WebControls.Button Contact_Btn;
 
         /// <summary>
+        /// Nav_Match control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell Nav_Match;
+
+        /// <summary>
+        /// Match_Button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Match_Button;
+
+        /// <summary>
         /// dine control.
         /// </summary>
         /// <remarks>
@@ -319,15 +337,6 @@ namespace Bulma_and_bulla
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label menuPanelLabel;
-
-        /// <summary>
-        /// menuLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label menuLabel;
 
         /// <summary>
         /// Menu_Control_Panel control.
@@ -1057,5 +1066,50 @@ namespace Bulma_and_bulla
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DownloadDeals;
+
+        /// <summary>
+        /// MatchFindPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MatchFindPanel;
+
+        /// <summary>
+        /// MatchLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MatchLbl;
+
+        /// <summary>
+        /// MatchTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MatchTxt;
+
+        /// <summary>
+        /// FindBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FindBtn;
+
+        /// <summary>
+        /// MatchError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MatchError;
     }
 }
