@@ -43,7 +43,7 @@
         </nav>
         
 
-        <div>
+        
             <asp:Panel ID="Current_Panel" runat="server" >
                 <!-- Basically Sweetheart work on these panels as the content of each page-->
                 <asp:Panel ID="Home_Panel" runat="server" CssClass="panels">
@@ -279,7 +279,7 @@
                 </asp:Panel>
             </asp:Panel>
             
-        </div>
+        
     </form>
 </body>
 </html>
