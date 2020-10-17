@@ -79,8 +79,11 @@
                             <asp:TableCell runat="server"> Bulla is the daughter of Vegeta and Bulma,
                                 making her a Saiyan and Earthling hybrid, like her older brother Trunks. She is also an excellent chef</asp:TableCell>
                         </asp:TableRow>
-                        
                     </asp:Table>
+                    <p>At Bulma & Bulla we offer quality food from all over the world! Create an account and join us! By creating an account, you will have exclusive access to your past orders 
+                        and to our brand new Soulmate Search, where we match you with people who have shown interest in the same products as you! You will be able to edit or delete your profile at 
+                        any given time, just don't forget your login info! Also, be sure to check out our newletter and leave us comments in the contact section!
+                    </p>
                 </asp:Panel>
 
                 <!-- Details panel which sucked the soul out of me-->
@@ -168,7 +171,6 @@
                     <br /><br />
                     <asp:Label ID="SignedUpAlert" runat="server" ForeColor="Blue"></asp:Label>
                     
-                    <asp:Panel ID="AuthenticatedSpace" runat="server" Visible="False" Enabled="False"></asp:Panel>
                 </asp:Panel>
 
                 <!--Customer's profile space-->
@@ -219,8 +221,9 @@
                     <asp:Button ID="pSaveButton" runat="server" Text="Save" onClick="onSaveClick" CssClass="aut_btn" enabled="false" Width="70px" />
                     <asp:Button ID="pDeleteButton" runat="server" Text="Delete" OnClick="OnDeleteClick" CssClass="aut_btn" Width="70px"  />
                     <br /><br />
+                    <asp:Label ID="pConfirmLabel" runat="server" ForeColor="Blue"></asp:Label>
+
                     
-                    <asp:Panel ID="Panel2" runat="server" Visible="False" Enabled="False"></asp:Panel>
                 </asp:Panel>
 
 
@@ -268,7 +271,7 @@
                     </div>
                 </asp:Panel>
 
-                <asp:Panel runat="server" ID="MatchFindPanel" Visible="False" Enabled="False" CssClass="panels">
+                <asp:Panel runat="server" ID="Match_Panel" Visible="False" Enabled="False" CssClass="panels">
                     <asp:Label ID="MatchLbl" runat="server" Text="Enter your email and find your soulmate!" CssClass="locationsTitle"></asp:Label><br /><br />
                     <asp:TextBox ID="MatchTxt" runat="server"></asp:TextBox>
                     <asp:Button ID="FindBtn" runat="server" Text="Find My Match" OnClick="FindBtn_Click" />

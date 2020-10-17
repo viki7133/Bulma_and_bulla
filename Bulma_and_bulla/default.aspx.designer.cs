@@ -600,15 +600,6 @@ namespace Bulma_and_bulla
         protected global::System.Web.UI.WebControls.Label SignedUpAlert;
 
         /// <summary>
-        /// AuthenticatedSpace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel AuthenticatedSpace;
-
-        /// <summary>
         /// Profile_Panel control.
         /// </summary>
         /// <remarks>
@@ -807,13 +798,13 @@ namespace Bulma_and_bulla
         protected global::System.Web.UI.WebControls.Button pDeleteButton;
 
         /// <summary>
-        /// Panel2 control.
+        /// pConfirmLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Label pConfirmLabel;
 
         /// <summary>
         /// Contact_Panel control.
@@ -1068,13 +1059,13 @@ namespace Bulma_and_bulla
         protected global::System.Web.UI.WebControls.Button DownloadDeals;
 
         /// <summary>
-        /// MatchFindPanel control.
+        /// Match_Panel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MatchFindPanel;
+        protected global::System.Web.UI.WebControls.Panel Match_Panel;
 
         /// <summary>
         /// MatchLbl control.
