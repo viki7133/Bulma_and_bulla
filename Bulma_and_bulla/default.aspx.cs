@@ -48,106 +48,31 @@ namespace Bulma_and_bulla
 
         protected void PanelEnable(Panel enablePanel)
         {
-          
+            foreach(Control control in Current_Panel.Controls)
+            {
+                if(control is Panel)
+                {
+                    ((Panel)control).Visible = false;
+                    ((Panel)control).Enabled = false;
+                }
+            }
+            enablePanel.Visible = true;
+            enablePanel.Enabled = true;
         }
 
         protected void OnHomeClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = true;
-            Home_Panel.Enabled = true;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(Home_Panel);
         }
 
         protected void OnAboutClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = true;
-            About_Panel.Enabled = true;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(About_Panel);
         }
 
         protected void OnContactClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = true;
-            Contact_Panel.Enabled = true;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(Contact_Panel);
 
             try
             {
@@ -203,35 +128,7 @@ namespace Bulma_and_bulla
 
         protected void OnMenuClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = true;
-            Menu_Panel.Enabled = true;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(Menu_Panel);
 
             try
             {
@@ -312,35 +209,8 @@ namespace Bulma_and_bulla
 
         protected void OpenMenuDetails(string controlID)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
+            PanelEnable(Details_Panel);
 
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = true;
-            Details_Panel.Enabled = true;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
 
             string controlId = controlID;
             string productId = controlId.Substring(8);
@@ -427,128 +297,44 @@ namespace Bulma_and_bulla
 
         protected void OnCustClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = true;
-            SignIn_Panel.Enabled = true;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(SignIn_Panel);
         }
 
         protected void OnSignUpLinkClick(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = true;
-            SignUp_Panel.Enabled = true;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(SignUp_Panel);
         }
 
         protected void OnOrderClick(object sender, EventArgs e)
         {
-            //Page_Load(sender, e);
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
+            PanelEnable(Order_Panel);
 
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
 
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Order_Panel.Visible = true;
-            Order_Panel.Enabled = true;
-            
             // <3 
-       /*         using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
-                {
-                    restaurantConnection.Open();
-                    SqlCommand cmd = restaurantConnection.CreateCommand();
-                    cmd.CommandType = CommandType.Text;
-                    //Write the query
-                    cmd.CommandText = "";
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    orderGridview.DataSource = dr;
-                    orderGridview.DataBind();
-                    restaurantConnection.Close();
-                }
-                orderGridview.Visible = true;
+            /*         using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+                     {
+                         restaurantConnection.Open();
+                         SqlCommand cmd = restaurantConnection.CreateCommand();
+                         cmd.CommandType = CommandType.Text;
+                         //Write the query
+                         cmd.CommandText = "";
+                         SqlDataReader dr = cmd.ExecuteReader();
+                         orderGridview.DataSource = dr;
+                         orderGridview.DataBind();
+                         restaurantConnection.Close();
+                     }
+                     orderGridview.Visible = true;
 
-            if (signedInEmail != "") 
-            { 
-                //create the order for the signed in customer using the signedInEmail
-            }
-            else
-            {
-                Label l = new Label();
-                l.Text = "You are not signed in, you will not be able to view this order later";
-                Order_Panel.Controls.Add(l);
-            }*/
+                 if (signedInEmail != "") 
+                 { 
+                     //create the order for the signed in customer using the signedInEmail
+                 }
+                 else
+                 {
+                     Label l = new Label();
+                     l.Text = "You are not signed in, you will not be able to view this order later";
+                     Order_Panel.Controls.Add(l);
+                 }*/
         }
 
         protected void OnSignInClick(object sender, EventArgs e)
@@ -659,35 +445,7 @@ namespace Bulma_and_bulla
 
         protected void OpenProfilePanel(int customerID)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = false;
-            MatchFindPanel.Enabled = false;
-
-            Profile_Panel.Visible = true;
-            Profile_Panel.Enabled = true;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
+            PanelEnable(Profile_Panel);
 
             pSaveButton.Enabled = false;
             pFirstNameTxtbox.Enabled = false;
@@ -870,37 +628,7 @@ namespace Bulma_and_bulla
 
         protected void Match_Button_Click(object sender, EventArgs e)
         {
-            Home_Panel.Visible = false;
-            Home_Panel.Enabled = false;
-
-            About_Panel.Visible = false;
-            About_Panel.Enabled = false;
-
-            Contact_Panel.Visible = false;
-            Contact_Panel.Enabled = false;
-
-            Menu_Panel.Visible = false;
-            Menu_Panel.Enabled = false;
-
-            SignIn_Panel.Visible = false;
-            SignIn_Panel.Enabled = false;
-
-            SignUp_Panel.Visible = false;
-            SignUp_Panel.Enabled = false;
-
-            Details_Panel.Visible = false;
-            Details_Panel.Enabled = false;
-
-            Profile_Panel.Visible = false;
-            Profile_Panel.Enabled = false;
-
-            MatchFindPanel.Visible = true;
-            MatchFindPanel.Enabled = true;
-
-            Order_Panel.Visible = false;
-            Order_Panel.Enabled = false;
-
-
+            PanelEnable(MatchFindPanel);
         }
 
         protected void FindBtn_Click(object sender, EventArgs e)

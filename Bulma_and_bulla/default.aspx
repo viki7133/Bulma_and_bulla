@@ -141,11 +141,7 @@
                                  <td>
                                      <asp:Button ID="payBtn" runat="server" Text="Pay!" Width="88px" /></td>
                             </tr>
-                        </table>
-                        
-                        
-                    
-                    
+                        </table>      
                 </asp:Panel>
                
 
@@ -269,9 +265,8 @@
                     
                     <br />
                     <asp:GridView ID="orderHistoryGridview" runat="server" align="center" Enabled="false" Visible="false">
-                    </asp:GridView>
+                    </asp:GridView> 
 
-                    
                 </asp:Panel>
 
 
