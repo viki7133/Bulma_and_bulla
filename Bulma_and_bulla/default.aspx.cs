@@ -621,27 +621,33 @@ namespace Bulma_and_bulla
             pGenderDropDown.Enabled = false;
             pGenderDropDown.Visible = false;
 
+            try
+            {
+                SqlConnection restaurantConnection = new SqlConnection(connectionString);
+                restaurantConnection.Open();
+                SqlCommand cmd = restaurantConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"SELECT * FROM dbo.Customer WHERE Customer_ID = {customerID}";
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
 
-            SqlConnection restaurantConnection = new SqlConnection(connectionString);
-            restaurantConnection.Open();
-            SqlCommand cmd = restaurantConnection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = $"SELECT * FROM dbo.Customer WHERE Customer_ID = {customerID}";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+                pFirstNameTxtbox.Text = ds.Tables[0].Rows[0]["Cust_First_Name"].ToString();
+                pLastNameTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Last_Name"].ToString();
+                pPhoneTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Phone_Number"].ToString();
+                pEmailTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Email_Address"].ToString();
+                pCityTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Address_City"].ToString();
+                pAddressTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Address_Line"].ToString();
+                pPasswordTxtBox.Text = ds.Tables[0].Rows[0]["Password"].ToString();
+                pGenderTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Gender"].ToString();
 
-            pFirstNameTxtbox.Text = ds.Tables[0].Rows[0]["Cust_First_Name"].ToString();
-            pLastNameTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Last_Name"].ToString();
-            pPhoneTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Phone_Number"].ToString();
-            pEmailTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Email_Address"].ToString();
-            pCityTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Address_City"].ToString();
-            pAddressTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Address_Line"].ToString();
-            pPasswordTxtBox.Text = ds.Tables[0].Rows[0]["Password"].ToString();
-            pGenderTxtbox.Text = ds.Tables[0].Rows[0]["Cust_Gender"].ToString();
+                restaurantConnection.Close();
+            }catch(SystemException)
+            {
 
-            restaurantConnection.Close();
+            }
+            
         }
 
         protected void OnEditClick(object sender, EventArgs e)
