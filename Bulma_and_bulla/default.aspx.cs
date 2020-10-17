@@ -10,12 +10,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
 using System.Configuration;
+using System.Data.Common;
 
 namespace Bulma_and_bulla
 {
     public partial class _default : System.Web.UI.Page
     {
         private String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vikto\Desktop\Bulma_and_bulla\Bulma_and_bulla\App_Data\BulmaAndBulla.mdf;Integrated Security=True";
+        string signedInEmail;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,6 +50,7 @@ namespace Bulma_and_bulla
         {
           
         }
+
         protected void OnHomeClick(object sender, EventArgs e)
         {
             Home_Panel.Visible = true;
@@ -74,8 +77,11 @@ namespace Bulma_and_bulla
             Profile_Panel.Visible = false;
             Profile_Panel.Enabled = false;
 
-            //MatchFindPanel.Visible = false;
-           // MatchFindPanel.Enabled = false;
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
         }
 
         protected void OnAboutClick(object sender, EventArgs e)
@@ -106,6 +112,9 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
         }
 
         protected void OnContactClick(object sender, EventArgs e)
@@ -136,6 +145,9 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
 
             try
             {
@@ -217,6 +229,9 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
 
             try
             {
@@ -323,6 +338,9 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
 
             string controlId = controlID;
             string productId = controlId.Substring(8);
@@ -435,6 +453,9 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
         }
 
         protected void OnSignUpLinkClick(object sender, EventArgs e)
@@ -465,11 +486,69 @@ namespace Bulma_and_bulla
 
             MatchFindPanel.Visible = false;
             MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
         }
 
         protected void OnOrderClick(object sender, EventArgs e)
         {
-            Page_Load(sender, e);
+            //Page_Load(sender, e);
+            Home_Panel.Visible = false;
+            Home_Panel.Enabled = false;
+
+            About_Panel.Visible = false;
+            About_Panel.Enabled = false;
+
+            Contact_Panel.Visible = false;
+            Contact_Panel.Enabled = false;
+
+            Menu_Panel.Visible = false;
+            Menu_Panel.Enabled = false;
+
+            SignIn_Panel.Visible = false;
+            SignIn_Panel.Enabled = false;
+
+            SignUp_Panel.Visible = false;
+            SignUp_Panel.Enabled = false;
+
+            Details_Panel.Visible = false;
+            Details_Panel.Enabled = false;
+
+            Profile_Panel.Visible = false;
+            Profile_Panel.Enabled = false;
+
+            MatchFindPanel.Visible = false;
+            MatchFindPanel.Enabled = false;
+
+            Order_Panel.Visible = true;
+            Order_Panel.Enabled = true;
+            
+            // <3 
+       /*         using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+                {
+                    restaurantConnection.Open();
+                    SqlCommand cmd = restaurantConnection.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    //Write the query
+                    cmd.CommandText = "";
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    orderGridview.DataSource = dr;
+                    orderGridview.DataBind();
+                    restaurantConnection.Close();
+                }
+                orderGridview.Visible = true;
+
+            if (signedInEmail != "") 
+            { 
+                //create the order for the signed in customer using the signedInEmail
+            }
+            else
+            {
+                Label l = new Label();
+                l.Text = "You are not signed in, you will not be able to view this order later";
+                Order_Panel.Controls.Add(l);
+            }*/
         }
 
         protected void OnSignInClick(object sender, EventArgs e)
@@ -494,6 +573,7 @@ namespace Bulma_and_bulla
                 if (ds.Tables[0].Rows[0]["Password"].ToString() == passwordToCheck)
                 {
                     signInUnable.Text = "Signed in";
+                    signedInEmail = ds.Tables[0].Rows[0]["Cust_Email_Address"].ToString();
                     OpenProfilePanel(Int32.Parse(ds.Tables[0].Rows[0]["Customer_ID"].ToString()));
                 }
                 else
@@ -549,6 +629,7 @@ namespace Bulma_and_bulla
 
                 cmd.ExecuteNonQuery();
                 restaurantConnection.Close();
+                signedInEmail = email;
 
                 SignedUpAlert.Text = "Congratulations on your new account. Check your email for more Information!";
             }
@@ -604,6 +685,9 @@ namespace Bulma_and_bulla
 
             Profile_Panel.Visible = true;
             Profile_Panel.Enabled = true;
+
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
 
             pSaveButton.Enabled = false;
             pFirstNameTxtbox.Enabled = false;
@@ -813,6 +897,9 @@ namespace Bulma_and_bulla
             MatchFindPanel.Visible = true;
             MatchFindPanel.Enabled = true;
 
+            Order_Panel.Visible = false;
+            Order_Panel.Enabled = false;
+
 
         }
 
@@ -841,6 +928,27 @@ namespace Bulma_and_bulla
             {
 
             }
+        }
+
+        //You just have to figure out the query
+        protected void OpenOrderHistory(object sender, EventArgs e)
+        {
+         /*   string customerEmail = pEmailTxtbox.Text;
+            //find custId for that email anddd yeah
+            //tbh I feel like we should use a gridview, datasource it and data bind it and call it a day
+            using (SqlConnection restaurantConnection = new SqlConnection(connectionString))
+            {
+                restaurantConnection.Open();
+                SqlCommand cmd = restaurantConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                //Write the query
+                cmd.CommandText = "";
+                SqlDataReader dr = cmd.ExecuteReader();
+                orderHistoryGridview.DataSource = dr;
+                orderHistoryGridview.DataBind();
+                restaurantConnection.Close();
+            }
+            orderHistoryGridview.Visible = true;*/
         }
     }
 }

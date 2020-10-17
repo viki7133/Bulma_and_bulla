@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Restaurant_Style.css" />
     <style type="text/css">
         .nav_bar {}
+        .aut_btn {}
     </style>
 </head>
 <body>
@@ -105,7 +106,47 @@
                     </asp:Panel>
                     
                 </asp:Panel>
-
+            <!--Your order page <3 -->
+                <asp:Panel ID="Order_Panel" runat="server" Visible="False" Enabled="False" CssClass="panels">
+                    <asp:Label ID="orderPanelLbl" runat="server" Text="YOUR ORDER" CssClass="title"></asp:Label>
+                    <br />
+                    <asp:Label ID="saleLbl" runat="server" Text="Free delivery on orders over 25$!" ForeColor="#4897C9" />
+                    <br />
+                    <br />
+                    <asp:Panel ID="order_Control_Panel" runat="server" HorizontalAlign="center">
+                        <asp:GridView ID="orderGridview" runat="server" align="center"></asp:GridView>
+                    </asp:Panel>
+                        <br />
+                        <table align="center">
+                            <tr>
+                                <td>Card Number:</td>
+                                <td><asp:TextBox ID="cardNumTxt" runat="server"></asp:TextBox></td>
+                                <td></td>
+                                <td>Deliver To:</td>
+                                <td><asp:TextBox ID="addressDeliveryTxt" runat="server"></asp:TextBox></td>
+                                
+                            </tr>
+                             <tr>
+                                <td>Expiration Date:</td>
+                                <td><asp:TextBox ID="cardExpTxt" runat="server"></asp:TextBox></td>
+                                 <td></td>
+                                 <td>Total: </td>
+                                 <td><asp:TextBox ID="priceTxt" runat="server" Enabled="false"></asp:TextBox></td>
+                            </tr>
+                             <tr>
+                                <td>Verification Number:</td>
+                                <td><asp:TextBox ID="cardVerificationTxt" runat="server"></asp:TextBox></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td>
+                                     <asp:Button ID="payBtn" runat="server" Text="Pay!" Width="88px" /></td>
+                            </tr>
+                        </table>
+                        
+                        
+                    
+                    
+                </asp:Panel>
                
 
                
@@ -222,6 +263,13 @@
                     <asp:Button ID="pDeleteButton" runat="server" Text="Delete" OnClick="OnDeleteClick" CssClass="aut_btn" Width="70px"  />
                     <br /><br />
                     <asp:Label ID="pConfirmLabel" runat="server" ForeColor="Blue"></asp:Label>
+                    <br />
+                    <asp:Button ID="pOpenPastOrdersBtn" runat="server" Text="Past Orders" OnClick="OpenOrderHistory" CssClass="aut_btn" Width="117px"  />
+                    <br />
+                    
+                    <br />
+                    <asp:GridView ID="orderHistoryGridview" runat="server" align="center" Enabled="false" Visible="false">
+                    </asp:GridView>
 
                     
                 </asp:Panel>
