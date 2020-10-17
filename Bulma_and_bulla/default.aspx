@@ -271,7 +271,7 @@
                     </div>
                 </asp:Panel>
 
-                <asp:Panel runat="server" ID="Match_Panel" Visible="False" Enabled="False" CssClass="panels">
+                <asp:Panel runat="server" ID="MatchFindPanel" Visible="False" Enabled="False" CssClass="panels">
                     <asp:Label ID="MatchLbl" runat="server" Text="Enter your email and find your soulmate!" CssClass="locationsTitle"></asp:Label><br /><br />
                     <asp:TextBox ID="MatchTxt" runat="server"></asp:TextBox>
                     <asp:Button ID="FindBtn" runat="server" Text="Find My Match" OnClick="FindBtn_Click" />

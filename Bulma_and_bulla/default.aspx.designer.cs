@@ -1059,13 +1059,13 @@ namespace Bulma_and_bulla
         protected global::System.Web.UI.WebControls.Button DownloadDeals;
 
         /// <summary>
-        /// Match_Panel control.
+        /// MatchFindPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Match_Panel;
+        protected global::System.Web.UI.WebControls.Panel MatchFindPanel;
 
         /// <summary>
         /// MatchLbl control.
